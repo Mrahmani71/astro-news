@@ -1,12 +1,40 @@
 ---
+import { getCollection } from 'astro:content';
+const categoriesCollection = await getCollection('categories');
+const categories: string[] = []
+categoriesCollection.map((category) => {
+  const titleArr = category.data.title.split(' ')
+  for(let i = 0;i < titleArr.length;i++) {
+    categories.push(titleArr[i])
+  } 
+})
+
 type Props = {
   title: string;
 };
 const { title } = Astro.props;
+
+
+function formatString(input:string, words:string[]) {
+  if(input === "Latest Articles") return input
+    let result = '';
+    let temp = input.toLowerCase();
+
+
+    words.forEach(word => {
+        if (temp.includes(word.toLowerCase())) {
+            result += word + ' ';
+            temp = temp.replace(word.toLowerCase(), ''); 
+        }
+    });
+
+    return result.trim();
+}
+const headerTitle = formatString(title, categories)
 ---
 
 <section
   class="flex items-center border-b-2 border-primary/10 p-1 mb-4"
 >
-  <h1 class="text-xl font-bold capitalize">{title}</h1>
+  <h1 class="text-xl font-bold capitalize">{headerTitle}</h1>
 </section>
