@@ -17,6 +17,12 @@ export const articlesHandler = {
 
     headlineSmall: () => {
         const bigHeadline = articlesHandler.headlineBig();
+
+        if (!bigHeadline || !bigHeadline.id) {
+			console.error('bigHeadline is undefined or missing id!');
+			return [];
+		}
+    
         return articlesCollection.filter((article) => article.data.isSmallHeadline === true && bigHeadline.id !== article.id).slice(0, 4);
     },
 }
