@@ -12,7 +12,7 @@ export type Link = {
   icon?: string;
 }
 
-type Author = {
+export type Author = {
   name: string;
   link: string;
 }
