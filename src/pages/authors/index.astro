@@ -4,6 +4,7 @@ import Info from "~/assets/svgs/info.astro";
 import AuthorCard from "~/components/cards/authorCard.astro";
 import ListLayout from "~/layouts/list.astro";
 import { authorsHandler } from "~/lib/handlers/authors";
+import type {Author} from "~/lib/types"
 import { getMeta } from "~/lib/utils/getMeta";
 const entry = await getEntry("views", "authors");
 
@@ -11,7 +12,7 @@ if (!entry) {
   return Astro.redirect("/404");
 }
 
-const authors = authorsHandler.allAuthors();
+const authors:Author[] = authorsHandler.allAuthors();
 
 const [HEADER, ATTENTION] = entry.data.blocks;
 
