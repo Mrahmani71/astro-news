@@ -28,7 +28,7 @@ const category = categoriesHandler.oneCategory(article.data.category.id);
     <div class="flex items-center gap-2 mb-1">
       <div class="flex-1">
         <h3 class="text-base lg:group-hover:underline mb-1">
-          <a href="href={`/articles/${article.id}`}">
+          <a href={`/articles/${article.id}`}>
             <span class="absolute inset-0 z-10 pointer-events-none"></span>
             {article.data.title}
           </a>
