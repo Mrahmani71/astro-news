@@ -57,10 +57,10 @@ if (!entry) {
         length={page.lastPage}
         currentUrl={page.url.current}
         currentPage={page.currentPage}
-        firstUrl={`/${firstPath}`}
+        firstUrl={`/${firstPath}/${params.category}`}
         prevUrl={page.url.prev}
         nextUrl={page.url.next}
-        lastUrl={`/${firstPath}/${page.lastPage}`}
+        lastUrl={`/${firstPath}/${params.category}/${page.lastPage}`}
       />
     ) : null
   }
