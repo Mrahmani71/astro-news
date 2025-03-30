@@ -26,6 +26,10 @@ export const getStaticPaths = (async ({ paginate }) => {
 const { page } = Astro.props;
 const params = Astro.params;
 const articles = page.data;
+const allArticles = articlesHandler.allArticles();
+const allArticlesForCategory = allArticles.filter(
+  (article) => article.data.category.id === params.category
+);
 const pathname = new URL(Astro.request.url).pathname.split("/");
 const firstPath = pathname[1];
 
@@ -48,7 +52,7 @@ if (!entry) {
     }
   </ul>
   {
-    articles.length > SITE.postsPerPage ? (
+    allArticlesForCategory.length > SITE.postsPerPage ? (
       <Pagination
         length={page.lastPage}
         currentUrl={page.url.current}
